@@ -1,6 +1,7 @@
 package com.devsuperior.dscatalog.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.devsuperior.dscatalog.dto.CategoryDTO;
@@ -18,11 +19,24 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     CategoryRepository repository;
 
-    // Find all 
+    // Find all
     @Override
     @Transactional(readOnly = true)
     public List<CategoryDTO> findAll() {
         List<Category> list = repository.findAll();
         return list.stream().map(l -> new ModelMapper().map(l, CategoryDTO.class)).collect(Collectors.toList());
+    }
+
+    // Find by id
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<CategoryDTO> findById(Long id) {
+        Optional<Category> entity = repository.findById(id);
+
+        if (entity.isPresent()) {
+            return Optional.of(new ModelMapper().map(entity.get(), CategoryDTO.class));
+        }
+
+        return Optional.empty();
     }
 }
