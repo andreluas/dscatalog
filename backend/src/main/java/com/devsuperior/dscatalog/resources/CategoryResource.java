@@ -3,7 +3,7 @@ package com.devsuperior.dscatalog.resources;
 import java.util.List;
 
 import com.devsuperior.dscatalog.dto.CategoryDTO;
-import com.devsuperior.dscatalog.services.CategoryService;
+import com.devsuperior.dscatalog.services.CategoryServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoryResource {
 
     @Autowired
-    private CategoryService service;
+    private CategoryServiceImpl service;
 
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> findAll() {
