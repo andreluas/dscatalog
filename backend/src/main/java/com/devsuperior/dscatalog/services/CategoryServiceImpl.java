@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.devsuperior.dscatalog.dto.CategoryDTO;
 import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.repositories.CategoryRepository;
+import com.devsuperior.dscatalog.services.exceptions.EntityNotFoundException;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @Transactional(readOnly = true)
     public Optional<CategoryDTO> findById(Long id) {
-        Optional<Category> entity = repository.findById(id);
-
-        if (entity.isPresent()) {
-            return Optional.of(new ModelMapper().map(entity.get(), CategoryDTO.class));
-        }
-
-        return Optional.empty();
+        Optional<Category> obj = repository.findById(id);
+        Category entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+        return Optional.of(new ModelMapper().map(entity, CategoryDTO.class));
     }
 }
