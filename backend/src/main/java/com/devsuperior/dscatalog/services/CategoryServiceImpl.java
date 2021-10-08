@@ -36,4 +36,12 @@ public class CategoryServiceImpl implements CategoryService {
         Category entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));
         return Optional.of(new ModelMapper().map(entity, CategoryDTO.class));
     }
+
+    @Override
+    @Transactional
+    public CategoryDTO insert(CategoryDTO dto) {
+        Category entity = new ModelMapper().map(dto, Category.class);
+        entity = repository.save(entity);
+        return new ModelMapper().map(entity, CategoryDTO.class);
+    }
 }

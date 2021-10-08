@@ -9,4 +9,5 @@ public interface CategoryService {
     
     List<CategoryDTO> findAll();
     Optional<CategoryDTO> findById(Long id);
+    CategoryDTO insert(CategoryDTO dto);
 }
