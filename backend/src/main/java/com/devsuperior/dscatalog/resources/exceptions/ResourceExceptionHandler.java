@@ -4,7 +4,7 @@ import java.time.Instant;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.devsuperior.dscatalog.services.exceptions.DatabaseException;
+import com.devsuperior.dscatalog.services.exceptions.DataBaseException;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 
 import org.springframework.http.HttpStatus;
@@ -27,8 +27,8 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
-    @ExceptionHandler(DatabaseException.class)
-    public ResponseEntity<StandardError> database(DatabaseException e, HttpServletRequest request) {
+    @ExceptionHandler(DataBaseException.class)
+    public ResponseEntity<StandardError> database(DataBaseException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError err = new StandardError();
         err.setTimestamp(Instant.now());
