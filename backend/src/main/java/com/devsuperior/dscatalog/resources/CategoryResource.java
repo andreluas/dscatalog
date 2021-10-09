@@ -1,7 +1,6 @@
 package com.devsuperior.dscatalog.resources;
 
 import java.net.URI;
-import java.util.List;
 
 import com.devsuperior.dscatalog.dto.CategoryDTO;
 import com.devsuperior.dscatalog.services.CategoryService;
@@ -36,7 +35,7 @@ public class CategoryResource {
             @RequestParam(value = "orderBy", defaultValue = "name") String orderBy) {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
         Page<CategoryDTO> list = service.findAllPaged(pageRequest);
-        return null;
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
