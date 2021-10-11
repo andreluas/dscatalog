@@ -37,6 +37,9 @@ public class Product implements Serializable {
     @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     Set<Category> categories = new HashSet<>();
 
+    public Product(){
+    }
+
     public Product(Long id, String name, String description, Double price, String imgUrl, Instant date) {
         this.id = id;
         this.name = name;
@@ -87,16 +90,16 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
     public Instant getDate() {
         return date;
     }
 
     public void setDate(Instant date) {
         this.date = date;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
     }
     // #endregion
 
