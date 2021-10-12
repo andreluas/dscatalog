@@ -58,9 +58,10 @@ public class CategoryService {
             return new CategoryDTO(entity);
 
             /*
-             * Category entity = repository.getOne(id); entity = new ModelMapper().map(dto,
-             * Category.class); entity = repository.save(entity); return new
-             * ModelMapper().map(entity, CategoryDTO.class);
+             * Category entity = repository.getOne(id); 
+             * entity = new ModelMapper().map(dto, Category.class); 
+             * entity = repository.save(entity); 
+             * return new ModelMapper().map(entity, CategoryDTO.class);
              */
 
         } catch (EntityNotFoundException e) {
