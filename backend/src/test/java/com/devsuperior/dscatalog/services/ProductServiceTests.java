@@ -36,7 +36,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 public class ProductServiceTests {
-    
+
     @InjectMocks
     private ProductService service;
 
@@ -64,7 +64,7 @@ public class ProductServiceTests {
         category = Factory.createCategory();
         page = new PageImpl<>(List.of(product));
 
-        when(repository.findAll((Pageable)ArgumentMatchers.any())).thenReturn(page);
+        when(repository.findAll((Pageable) ArgumentMatchers.any())).thenReturn(page);
         when(repository.save(ArgumentMatchers.any())).thenReturn(product);
         when(repository.findById(existingId)).thenReturn(Optional.of(product));
         when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
@@ -76,12 +76,12 @@ public class ProductServiceTests {
         doThrow(EmptyResultDataAccessException.class).when(repository).deleteById(nonExistingId);
         doThrow(DataIntegrityViolationException.class).when(repository).deleteById(dependentId);
     }
-    
+
     @Test
     public void updateShouldReturnEntityNotFoundExceptionWhenIdDoesNotExist() {
-        
+
         Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-           service.update(nonExistingId, productDTO);
+            service.update(nonExistingId, productDTO);
         });
     }
 
@@ -113,7 +113,7 @@ public class ProductServiceTests {
         Pageable pageable = PageRequest.of(0, 10);
 
         Page<ProductDTO> result = service.findAllPaged(pageable);
-        
+
         Assertions.assertNotNull(result);
         verify(repository).findAll(pageable);
     }
