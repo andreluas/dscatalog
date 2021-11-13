@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CategoryService {
 
     @Autowired
-    CategoryRepository repository;
+    private CategoryRepository repository;
 
     // Find all
     @Transactional(readOnly = true)

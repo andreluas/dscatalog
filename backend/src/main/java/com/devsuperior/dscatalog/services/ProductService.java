@@ -26,10 +26,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductService {
 
     @Autowired
-    ProductRepository repository;
+    private ProductRepository repository;
 
     @Autowired
-    CategoryRepository categoryRepository;
+    private  CategoryRepository categoryRepository;
 
     // Find all
     @Transactional(readOnly = true)
