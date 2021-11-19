@@ -13,7 +13,6 @@ import com.devsuperior.dscatalog.repositories.ProductRepository;
 import com.devsuperior.dscatalog.services.exceptions.DataBaseException;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -29,7 +28,7 @@ public class ProductService {
     private ProductRepository repository;
 
     @Autowired
-    private  CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     // Find all
     @Transactional(readOnly = true)
@@ -43,15 +42,16 @@ public class ProductService {
     public ProductDTO findById(Long id) {
         Optional<Product> obj = repository.findById(id);
         Product entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
-        return new ModelMapper().map(entity, ProductDTO.class);
+        return new ProductDTO(entity, entity.getCategories());
     }
 
     // Insert
     @Transactional
     public ProductDTO insert(ProductDTO dto) {
-        Product entity = new ModelMapper().map(dto, Product.class);
+        Product entity = new Product();
+        copyDtoToEntity(dto, entity);
         entity = repository.save(entity);
-        return new ModelMapper().map(entity, ProductDTO.class);
+        return new ProductDTO(entity);
     }
 
     // Update
