@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src = ".git/banner/devsuperior.svg" alt="exercicio">
+<img src = "backend/src/banner/devsuperior.svg" alt="exercicio">
 </p>
 
 <br>
