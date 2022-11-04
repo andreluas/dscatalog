@@ -12,4 +12,4 @@
 |02|Testes Automatizados|Introdução a testes automatizados, TDD, JUnit com e sem Spring Boot, testes de integração, mockar dependências com Mockito e MockBean, realizar assertions.| Completo :heavy_check_mark: | 
 |03|Validação e segurança|Modelo de dados de usuários e perfis, Validação com Bean Validation, Autenticação e autorização (Spring Security, OAuth 2.0, Token JWT, Autorização de rotas por perfil)| Completo :heavy_check_mark: |  
 |04|Domínio e ORM, autorizações|Domínio e ORM (Implementação de um modelo de domínio complexo, Instanciação (seed) de um modelo de domínio com SQL), Autorizações (Autorização customizada em nível de serviço, Conteúdo customizado para o usuário logado, Refresh token, Pré-autorização de métodos)| Completo :heavy_check_mark: |
-|05|Consultas ao banco de dados|Você vai aprender a realizar consultas ao banco de dados com JPA e JPQL, problema das N+1 consultas, consultas nativas com SQL.| Em andamento :pushpin: |
+|05|Consultas ao banco de dados|Você vai aprender a realizar consultas ao banco de dados com JPA e JPQL, problema das N+1 consultas, consultas nativas com SQL.| Completo :heavy_check_mark: |
