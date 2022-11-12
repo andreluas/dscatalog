@@ -1,7 +1,8 @@
 import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
-import './styles.scss';
 
-function Pagination() {
+import './styles.css';
+
+const Pagination = () => {
   return (
     <div className="pagination-container">
       <ArrowIcon className="arrow-previous arrow-inactive" />
@@ -13,6 +14,6 @@ function Pagination() {
       <ArrowIcon className="arrow-next arrow-active" />
     </div>
   );
-}
+};
 
 export default Pagination;

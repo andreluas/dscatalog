@@ -1,13 +1,41 @@
 import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
+import axios from 'axios';
 import ProductPrice from 'components/ProductPrice';
-import { Link } from 'react-router-dom';
-import './styles.scss';
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { Product } from 'types/product';
+import { BASE_URL } from 'util/requests';
+import ProductInfoLoader from './ProductInfoLoader';
+import ProductDetailsLoader from './ProductDetailsLoader';
 
-function ProductDetails() {
+import './styles.css';
+
+type UrlParams = {
+  productId: string;
+};
+
+const ProductDetails = () => {
+  const { productId } = useParams<UrlParams>();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [product, setProduct] = useState<Product>();
+
+  useEffect(() => {
+    setIsLoading(true);
+    axios
+      .get(`${BASE_URL}/products/${productId}`)
+      .then((response) => {
+        setProduct(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [productId]);
+
   return (
     <div className="product-details-container">
       <div className="base-card product-details-card">
-        <Link to="/">
+        <Link to="/products">
           <div className="goback-container">
             <ArrowIcon />
             <h2>VOLTAR</h2>
@@ -15,30 +43,34 @@ function ProductDetails() {
         </Link>
         <div className="row">
           <div className="col-xl-6">
-            <div className="img-container">
-              <img
-                src="https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/2-big.jpg"
-                alt="Imagem Produto"
-              />
-            </div>
-            <div className="name-price-container">
-              <h1>Nome do produto</h1>
-              <ProductPrice price={2345.67} />
-            </div>
+            {isLoading ? (
+              <ProductInfoLoader />
+            ) : (
+              <>
+                <div className="img-container">
+                  <img src={product?.imgUrl} alt={product?.name} />
+                </div>
+                <div className="name-price-container">
+                  <h1>{product?.name}</h1>
+                  {product && <ProductPrice price={product?.price} />}
+                </div>
+              </>
+            )}
           </div>
           <div className="col-xl-6">
-            <div className="description-container">
-              <h2>Descrição do produto</h2>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Expedita, quidem.
-              </p>
-            </div>
+            {isLoading ? (
+              <ProductDetailsLoader />
+            ) : (
+              <div className="description-container">
+                <h2>Descrição do produto</h2>
+                <p>{product?.description}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default ProductDetails;

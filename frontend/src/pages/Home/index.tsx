@@ -1,9 +1,10 @@
 import { ReactComponent as MainImage } from 'assets/images/main-image.svg';
-import { Link } from 'react-router-dom';
 import ButtonIcon from 'components/ButtonIcon';
-import './styles.scss';
+import { Link } from 'react-router-dom';
 
-function Home() {
+import './styles.css';
+
+const Home = () => {
   return (
     <div className="home-container">
       <div className="base-card home-card">
@@ -15,9 +16,11 @@ function Home() {
               mercado.
             </p>
           </div>
-          <Link to="/products">
-            <ButtonIcon text="Inicie agora a sua busca" />
-          </Link>
+          <div>
+            <Link to="/products">
+              <ButtonIcon text="Inicie agora a sua busca" />
+            </Link>
+          </div>
         </div>
         <div className="home-image-container">
           <MainImage />
@@ -25,6 +28,6 @@ function Home() {
       </div>
     </div>
   );
-}
+};
 
 export default Home;

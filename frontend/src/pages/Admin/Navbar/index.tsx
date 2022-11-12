@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import './styles.scss';
+import './styles.css';
 
-function Navbar() {
+const Navbar = () => {
   return (
     <nav className="admin-nav-container">
       <ul>
@@ -23,6 +23,6 @@ function Navbar() {
       </ul>
     </nav>
   );
-}
+};
 
 export default Navbar;
