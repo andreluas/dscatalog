@@ -1,7 +1,6 @@
 import './styles.scss';
 import 'bootstrap/js/src/collapse.js';
 import { Link, NavLink } from 'react-router-dom';
-import { NONAME } from 'dns';
 
 function Navbar() {
   return (
@@ -48,7 +47,7 @@ function Navbar() {
               </li>
               <li>
                 <NavLink
-                  to="/admin"
+                  to="/admin/products"
                   style={(isActive) => ({
                     color: isActive ? '#fff' : 'none',
                   })}
