@@ -12,7 +12,11 @@ const CatalogRoutes = () => (
       <Route path="/" element={<Home />} />
       <Route path="/products" element={<Catalog />} />
       <Route path="/products/:productId" element={<ProductDetails />} />
-      <Route path="/admin" element={<Admin />} />
+      <Route path="/admin" element={<Admin />}>
+        <Route path="/admin/products" />
+        <Route path="/admin/categories" />
+        <Route path="/admin/users" />
+      </Route>
     </Routes>
   </BrowserRouter>
 );
